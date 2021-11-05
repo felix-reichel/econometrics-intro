@@ -99,3 +99,5 @@ acf(y4[row_select,3], lag.max = T)
 row_select <- row_select + 3
 acf(y4[row_select,3], lag.max = T)
 
+acf(y4[,3])
+
