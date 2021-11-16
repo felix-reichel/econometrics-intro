@@ -4,7 +4,8 @@
 #                  with deterministic seasonal pattern
 # Author: Felix Reichel
 # ---------------------------------------------------------
-
+require(astsa)
+require(tseries)
 # Simulate data from a model with linear trend and a deterministic (quarterly)
 # seasonal pattern (T = 100, σ^2 = 1) and plot the series.
 
@@ -100,5 +101,31 @@ lines(lm_pred[101:120], col="blue")
 # Now simulate a realisation of these 20 values and compare out-of sample performance. 
 # Plot the original and the new simulated data as well as the forecasts
 # from both methods. Which method performs better?
+
+ltr <-1:Tf
+seas_pattern <- c(4, 2.5, 3, 1.5)
+seas <- rep(seas_pattern, Tf/periods)
+
+set.seed(2345)
+
+err <- rnorm(Tf)*sigma
+ytrseas <- a*ltr + seas + err
+
+plot(ytrseas[101:120], type="l")
+lines(c(hw_exp_fc), col="red")
+lines(lm_pred[101:120], col="blue")
+
+# MSE, MAE and MAPE 
+hw_exp_fit_actual <- c(hw_exp_fc)
+lm_fit_actual <- c(lm_pred)[101:120]
+expected <- ytrseas[101:120]
+
+mse(expected, hw_exp_fit_actual)
+mse(expected, lm_fit_actual)
+mae(expected, hw_exp_fit_actual)
+mae(expected, lm_fit_actual)
+mape(expected, hw_exp_fit_actual)
+mape(expected, lm_fit_actual)
+
 
 
