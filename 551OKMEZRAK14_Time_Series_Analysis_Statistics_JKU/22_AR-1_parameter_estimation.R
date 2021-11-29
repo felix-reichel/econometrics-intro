@@ -9,55 +9,40 @@ require(tseries)
 Tau <- 100000
 sgma2 <- 1
 phi <- .6
-micron <- 10 # where is the unconditional mean
+mu <- 10 # where is the unconditional mean
 
 Tau_subset <- c(50, 100, 1000, 10000)
 
 set.seed(2345)
 
 ARIMA_order <- c(1,0,0)
-ts.sim.demeaned <- arima.sim(list(order = ARIMA_order, ar = c(phi)), n = Tau, sd = sgma2)
-ts.sim <- micron + ts.sim.demeaned
+ts.sim <- mu + arima.sim(list(order = ARIMA_order, ar = c(phi)), n = Tau, sd = sgma2)
 
 plot(ts.sim[1:100], type = "l")
 
 
-# AR method to estimate the chosen parameters
+# Estimate the parameters using Yule-Walker equations, OLS, MLE
+ar(ts.sim[1:Tau_subset[1]], method = "yule-walker")
+plot(ar(ts.sim[1:Tau_subset[1]], method = "yule-walker"))
 
-# ar(ts.sim[1:Taus[1]], method = "yule-walker")
-# ar(ts.sim[1:Taus[1]], method = "ols")
-# ar(ts.sim[1:Taus[1]], method = "mle")
+ar(ts.sim[1:Tau_subset[1]], method = "ols")
+plot(ar(ts.sim[1:Tau_subset[1]], method = "ols"))
 
-for (idx in 1:4) {
-  idx
-  ywr_est <- ar(ts.sim[1:Tau_subset[idx]], method = "yule-walker")
-  ywr_est 
-  ols_est <- ar(ts.sim[1:Tau_subset[idx]], method = "ols")
-  ols_est
-  mle_est <- ar(ts.sim[1:Tau_subset[idx]], method = "mle")
-  mle_est
+ar(ts.sim[1:Tau_subset[1]], method = "mle")
+plot(ar(ts.sim[1:Tau_subset[1]], method = "mle"))
+
+
+for (idx in 2:4) {
+  ar(ts.sim[1:Tau_subset[idx]], method = "yule-walker")
+  ar(ts.sim[1:Tau_subset[idx]], method = "ols")
+  ar(ts.sim[1:Tau_subset[idx]], method = "mle")
 }
 
 
-for (idx in 1:4) {
-  t <- Tau_subset[idx]
-  x <- 1:t
-  linear_model <- lm(x ~ ts.sim.demeaned[1:t])
+x1 <- 2:50 # yt to yT*1
 
-}
-
-
-x <- 1:100
-plot(ts.sim.demeaned[1:100], type ="l")
-linear_model <- lm(x ~ ts.sim.demeaned[1:100])
-summary(linear_model)
-
-df <- data.frame(ltr = 1:100)
-lm_fit <- ts(predict(linear_model, newdata = df))
-
-plot(lm_fit)
-plot(ts.sim.demeaned[1:100], type ="l")
-
+ts.sim.demeaned = ts.sim[x1] - mu
+plot(ts.sim.demeaned[x1], type ="l")
 
 
 
