@@ -5,6 +5,7 @@
 # ---------------------------------------------------------
 require(astsa)
 require(tseries)
+source("https://raw.githubusercontent.com/robjhyndman/forecast/master/R/armaroots.R")
 
 Tau <- 100000
 sgma2 <- 1
@@ -44,5 +45,5 @@ x1 <- 2:50 # yt to yT*1
 ts.sim.demeaned = ts.sim[x1] - mu
 plot(ts.sim.demeaned[x1], type ="l")
 
-
-
+lm = lm(x1 ~ ts.sim.demeaned[x1])
+lm

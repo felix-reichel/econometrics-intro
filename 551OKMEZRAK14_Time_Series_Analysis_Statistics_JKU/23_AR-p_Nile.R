@@ -40,17 +40,13 @@ abline(h=mean(lm$residuals), col="red")
 
 lm_intercept_only = lm(Nile ~ 1)
 new_data <- data.frame(x=1, y=1)
-
 lm_predict_predition <- predict(lm_intercept_only, newdata = new_data, interval = "prediction")
-lm_predict_predition
 
 hw_exp_ses_train <- HoltWinters(ts(Nile, frequency = 1), beta = FALSE, gamma = FALSE)
 hw_exp_ses_pred <- predict(object = hw_exp_ses_train, n.ahead = 5, prediction.interval = TRUE)
 
 hw_exp_ts <- ts(c(hw_exp_ses_train$fitted[,1], hw_exp_ses_pred[,1]),
-  start = start(Nile), 
-  end = end(Nile)[1] + 5, 
-  frequency = 1)
+  start = start(Nile), end = end(Nile)[1] + 4, frequency = 1)
 
 plot(ts_incl_pred)
 lines(ts_incl_pred_lower, col="blue")
