@@ -37,6 +37,9 @@ sim_kpss_prcs = function(xi, Tau, sigma2_ut, sgma2=1) {
 ########################################################
 set.seed(2345)
 
+defaultW <- getOption("warn") 
+options(warn = -1) 
+
 # PARAMS 1
 for (n in 1:nsim) {
   sim_1 <- sim_kpss_prcs(xi[1], 100, sgma2_ut[1])

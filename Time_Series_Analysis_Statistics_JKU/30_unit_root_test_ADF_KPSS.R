@@ -30,7 +30,8 @@ kpss.test(x, null = "Trend")    # p-value = 0.1 > 0.05 => Trend Stationary
 kpss.test(x, null = "Level")    # p-value = 0.01 < 0.05 => Level non-stationary
 
 ############################################
-
+defaultW <- getOption("warn") 
+options(warn = -1) 
 
 # gtemp
 plot(gtemp)       # exhibits a visible trend => therefore not trend stationary 
