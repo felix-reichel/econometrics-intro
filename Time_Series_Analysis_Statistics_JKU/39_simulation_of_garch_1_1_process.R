@@ -5,8 +5,6 @@
 # ---------------------------------------------------------
 require(astsa)
 require(tseries)
-
-install.packages("fGarch")
 require(fGarch)
 
 Tau <- 10000
@@ -18,26 +16,24 @@ gamma <- 0.2
 spec = garchSpec(model = list(omega = alpha0, alpha = alpha1, beta = gamma))
 garch1_1_sim <- garchSim(spec, n = Tau)
 
-
 plot(garch1_1_sim)
 acf(garch1_1_sim)
 acf(garch1_1_sim^2)
-garch1_1 <- garch(garch1_1_sim, order = c(0,2))
+garch1_1 <- garch(garch1_1_sim)
 summary(garch1_1)
-
 
 # Tau <- 100
 plot(garch1_1_sim[1:100], type='l')
 acf(garch1_1_sim[1:100])
 acf(garch1_1_sim[1:100]^2)
-garch1_1 <- garch(garch1_1_sim[1:100], order = c(0,2))
+garch1_1 <- garch(garch1_1_sim[1:100])
 summary(garch1_1)
 
 # Tau <- 1000
 plot(garch1_1_sim[1:1000], type='l')
 acf(garch1_1_sim[1:1000])
 acf(garch1_1_sim[1:1000]^2)
-garch1_1 <- garch(garch1_1_sim[1:1000], order = c(0,2))
+garch1_1 <- garch(garch1_1_sim[1:1000])
 summary(garch1_1)
 
 

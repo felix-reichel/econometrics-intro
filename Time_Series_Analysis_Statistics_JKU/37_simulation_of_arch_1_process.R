@@ -5,8 +5,6 @@
 # ---------------------------------------------------------
 require(astsa)
 require(tseries)
-
-install.packages("fGarch")
 require(fGarch)
 
 Tau <- 1000
@@ -22,6 +20,9 @@ plot(arch1_sim1)
 acf(arch1_sim1)
 acf(arch1_sim1^2)
 
+arch_model_estimated <- garch(arch1_sim1)
+summary(arch_model_estimated) # Model: GARCH(1,1)
+
 arch1 <- garch(arch1_sim1, order = c(0,1))
 summary(arch1)
 #
@@ -36,6 +37,9 @@ plot(arch1_sim2)
 acf(arch1_sim2)
 acf(arch1_sim2^2)
 
+arch_model_estimated <- garch(arch1_sim2)
+summary(arch_model_estimated) # Model: GARCH(1,1)
+
 arch1 <- garch(arch1_sim2, order = c(0,1))
 summary(arch1)
 # Coefficient(s):
@@ -48,6 +52,9 @@ arch1_sim2 <- garchSim(spec, n = Tau)
 plot(arch1_sim2)
 acf(arch1_sim2)
 acf(arch1_sim2^2)
+      
+arch_model_estimated <- garch(arch1_sim2)
+summary(arch_model_estimated) # Model: GARCH(1,1)2)
 
 arch1 <- garch(arch1_sim2, order = c(0,1))
 summary(arch1)
