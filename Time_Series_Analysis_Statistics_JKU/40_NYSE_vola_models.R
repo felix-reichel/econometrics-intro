@@ -11,8 +11,11 @@ require(forecast)
 ts_nyse <- ts(nyse[2])
 
 plot(ts_nyse)
-acf(ts_nyse)
-acf(ts_nyse^2)
+acf(ts_nyse, lag.max = 100)
+acf(ts_nyse^2,lag.max = 100)
+
+pacf(ts_nyse)
+pacf(ts_nyse^2) # has a single spike at lag 1 suggesting an AR(1) model for the squared series.
 
 
 # Fit ARCH(r) processes of different order to NYSE
