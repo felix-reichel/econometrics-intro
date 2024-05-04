@@ -1,4 +1,4 @@
-## Learning Econometrics
+## Learning Econometrics (Intro level)
 This is my personal repo where I try to learn Econometrics for my Econ degree.
 
 ### University (undergraduate lvl. courses)
@@ -11,8 +11,6 @@ This is my personal repo where I try to learn Econometrics for my Econ degree.
  ✅ Exploratory Data Analysis Using R [JKU]
  
  ✅ CS910-15 Data Science: Foundations of Data Analysis [Warwick]
- 
- ✅ Intermediate Econometrics [JKU]
  
  ☑ [STAT-510 Applied Time Series Analysis](https://online.stat.psu.edu/stat510/lesson/1) [PSU]
  
