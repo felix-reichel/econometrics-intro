@@ -26,6 +26,9 @@ This is my personal repo where I try to learn Econometrics for my Econ degree.
 
 [Causal Inference The Mixtape](https://mixtape.scunning.com/) [Scott Cunningham]
 
+[Causal Analysis: Impact Evaluation and Causal ML in R](https://mitpress.ublish.com/ebook/causal-analysis-impact-evaluation-and-causal-machine-learning-with-applications-in-r-preview/12759/Cover) [Martin Huber]
+[R Source Code that goes along with Causal Analysis](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HLC4EW)
+
 ### Useful Resourses on Data Analysis:
 
 [Getting Started in Data Analysis using Stata and R](http://www.princeton.edu/~otorres/) [Princeton]
